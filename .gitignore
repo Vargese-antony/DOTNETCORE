@@ -1,0 +1,30 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+
+
+**/build_generated
+**/node_modules
+*npm-debug.log.*
+
+# Visual Studio 2015 cache/options directory
+**/.vs/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+bin
+obj
+**/packages
+**/TestResults
+*.suo
+*.user
+/deployed
+**/.vscode
+**/dist
+**/PublishProfiles
+/BaseMobilization/FLM.BaseMobilization.API/.config
