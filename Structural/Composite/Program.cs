@@ -9,6 +9,29 @@ namespace Composite_Pattern
         {
             //StructuralExample();
 
+            //FileSystemComposite();
+
+        }
+
+        private static void FileSystemComposite()
+        {
+            var root = new DirectoryItem("root");
+            var p1 = new DirectoryItem("P1");
+            var p2 = new DirectoryItem("P2");
+            root.Add(p1);
+            root.Add(p2);
+
+            p1.Add(new FileItem("p1f1.txt", 2100));
+            p1.Add(new FileItem("p1f2.txt", 3100));
+            var sd1 = new DirectoryItem("sub-dir1");
+            sd1.Add(new FileItem("p1f3.txt", 4100));
+            sd1.Add(new FileItem("p1f4.txt", 5100));
+            p1.Add(sd1);
+
+            p2.Add(new FileItem("p2f1.txt", 6100));
+            p2.Add(new FileItem("p2f2.txt", 7100));
+
+            Console.WriteLine($"Total file size: {p2.GetFileSizeInKB()}");
         }
 
         private static void StructuralExample()
