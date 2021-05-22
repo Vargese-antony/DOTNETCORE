@@ -1,5 +1,6 @@
 ﻿using System;
 using Composite_Pattern.Structural;
+using Newtonsoft.Json;
 
 namespace Composite_Pattern
 {
@@ -11,6 +12,27 @@ namespace Composite_Pattern
 
             //FileSystemComposite();
 
+            //BuilderCompositeExample();
+        }
+
+        private static void BuilderCompositeExample()
+        {
+            var builder = new FileSystemBuilder("root");
+            builder.AddDirectory("p1");
+            builder.AddFile("p1f1.txt", 2100);
+            builder.AddFile("p1f2.txt", 3100);
+
+            builder.AddDirectory("sub-dir1");
+            builder.AddFile("p1f3.txt", 4100);
+            builder.AddFile("p1f4.txt", 5100);
+
+            builder.SetCurrentDirectory("root");
+            builder.AddDirectory("p2");
+            builder.AddFile("p2f1.txt", 6100);
+            builder.AddFile("p2f2.txt", 7100);
+
+            Console.WriteLine($"Total size: {builder.Root.GetFileSizeInKB()}");
+            Console.WriteLine(JsonConvert.SerializeObject(builder.Root, Formatting.Indented));
         }
 
         private static void FileSystemComposite()

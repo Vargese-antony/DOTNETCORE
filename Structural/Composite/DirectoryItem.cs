@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Composite_Pattern
 {
-    class DirectoryItem : FileSystemItem
+    public class DirectoryItem : FileSystemItem
     {
-        private List<FileSystemItem> items { get; } = new List<FileSystemItem>();
+        public List<FileSystemItem> items { get; } = new List<FileSystemItem>();
         public DirectoryItem(string name) : base(name)
         {
         }
