@@ -1,4 +1,5 @@
-﻿using Strategy.Business.Strategies.SalesTax;
+﻿using Strategy.Business.Strategies.Invoice;
+using Strategy.Business.Strategies.SalesTax;
 using Strategy_Pattern_First_Look.Business.Models;
 using System;
 
@@ -14,7 +15,8 @@ namespace Strategy_Pattern_First_Look
                 {
                     OriginCountry = "Sweden",
                     DestinationCountry = "Sweden"
-                }
+                },
+                InvoiceStrategy = new FileInvoiceStratergy()
             };
 
             var destination = order.ShippingDetails.DestinationCountry.ToLowerInvariant();
