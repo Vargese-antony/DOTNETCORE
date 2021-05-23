@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using State_Design_Pattern.Logic.State;
 using State_Design_Pattern.UI;
 
 namespace State_Design_Pattern.Logic
@@ -14,24 +15,31 @@ namespace State_Design_Pattern.Logic
         public int TicketCount { get; set; }
         public int BookingID { get; set; }
 
+        private BookingState currentState;
+        public void TransitionToState(BookingState state)
+        {
+            currentState = state;
+            currentState.EnterState(this);
+        }
         public BookingContext(MainWindow view)
         {
             View = view;
+            TransitionToState(new NewState());
         }
 
         public void SubmitDetails(string attendee, int ticketCount)
         {
-            
+            currentState.EnterDetails(this, attendee, ticketCount);
         }
 
         public void Cancel()
         {
-            
+            currentState.Cancel(this);
         }
 
         public void DatePassed()
         {
-           
+            currentState.DatePassed(this);  
         }
 
         public void ShowState(string stateName)
