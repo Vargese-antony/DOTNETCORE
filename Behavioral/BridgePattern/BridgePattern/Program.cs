@@ -8,13 +8,22 @@ namespace BridgePattern
         {
             DateTime now = DateTime.Now;
 
-            var license1 = new TwoDaysLicense("Secret Life of Pets", now);
-            var license2 = new LifeLongLicense("Matrix", now);
+            var noDiscount = new NoDiscount();
+            var license1 = new TwoDaysLicense("Secret Life of Pets", now, noDiscount);
+            var license2 = new LifeLongLicense("Matrix", now, noDiscount);
 
             PrintLicenseDetails(license1);
             PrintLicenseDetails(license2);
 
-            Console.ReadKey();
+            var seniorDiscount = new SeniorDiscount();
+            var militaryDiscount = new MilitaryDiscount();
+            var license3 = new TwoDaysLicense("Matrix", now, seniorDiscount);
+            var license4 = new LifeLongLicense("Secret Life of Pets", now, militaryDiscount);
+
+            PrintLicenseDetails(license3);
+            PrintLicenseDetails(license4);
+
+            //Console.ReadKey();
         }
 
         private static void PrintLicenseDetails(MovieLicense license)

@@ -4,27 +4,35 @@ namespace BridgePattern
 {
     public abstract class MovieLicense
     {
+        private readonly Discount _discount;
         public string Movie { get; }
         public DateTime PurchaseTime { get; }
 
-        protected MovieLicense(string movie, DateTime purchaseTime)
+        protected MovieLicense(string movie, DateTime purchaseTime, Discount discount)
         {
             Movie = movie;
             PurchaseTime = purchaseTime;
+            _discount = discount;
         }
+        public decimal GetPrice()
+        {
+            int discount = _discount.GetDiscount();
+            decimal multiplier = 1 - discount / 100m;
+            return GetPriceCore() * multiplier;
 
-        public abstract decimal GetPrice();
+        }
+        protected abstract decimal GetPriceCore();
         public abstract DateTime? GetExpirationDate();
     }
 
     public class TwoDaysLicense : MovieLicense
     {
-        public TwoDaysLicense(string movie, DateTime purchaseTime)
-            : base(movie, purchaseTime)
+        public TwoDaysLicense(string movie, DateTime purchaseTime, Discount discount)
+            : base(movie, purchaseTime, discount)
         {
         }
 
-        public override decimal GetPrice()
+        protected override decimal GetPriceCore()
         {
             return 4;
         }
@@ -37,12 +45,12 @@ namespace BridgePattern
 
     public class LifeLongLicense : MovieLicense
     {
-        public LifeLongLicense(string movie, DateTime purchaseTime)
-            : base(movie, purchaseTime)
+        public LifeLongLicense(string movie, DateTime purchaseTime, Discount discount)
+            : base(movie, purchaseTime, discount)
         {
         }
 
-        public override decimal GetPrice()
+        protected override decimal GetPriceCore()
         {
             return 8;
         }
