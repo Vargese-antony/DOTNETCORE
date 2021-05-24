@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BridgePattern
+namespace BridgePattern_Inheritance_Approach
 {
     public abstract class Discount
     {

@@ -8,18 +8,30 @@ namespace BridgePattern
         {
             DateTime now = DateTime.Now;
 
-            var noDiscount = new NoDiscount();
-            var license1 = new TwoDaysLicense("Secret Life of Pets", now, noDiscount);
-            var license2 = new LifeLongLicense("Matrix", now, noDiscount);
+            //########################Inheritance approach########################
+
+            //var noDiscount = new NoDiscount();
+            //var license1 = new TwoDaysLicense("Secret Life of Pets", now, noDiscount);
+            //var license2 = new LifeLongLicense("Matrix", now, noDiscount);
+
+            //PrintLicenseDetails(license1);
+            //PrintLicenseDetails(license2);
+
+            //var seniorDiscount = new SeniorDiscount();
+            //var militaryDiscount = new MilitaryDiscount();
+            //var license3 = new TwoDaysLicense("Matrix", now, seniorDiscount);
+            //var license4 = new LifeLongLicense("Secret Life of Pets", now, militaryDiscount);
+
+            //####################Composition approach############################
+
+            var license1 = new MovieLicense("Secret Life of Pets", now, Discount.None, LicenseType.TwoDays);
+            var license2 = new MovieLicense("Matrix", now, Discount.None, LicenseType.LifeLong);
 
             PrintLicenseDetails(license1);
             PrintLicenseDetails(license2);
 
-            var seniorDiscount = new SeniorDiscount();
-            var militaryDiscount = new MilitaryDiscount();
-            var license3 = new TwoDaysLicense("Matrix", now, seniorDiscount);
-            var license4 = new LifeLongLicense("Secret Life of Pets", now, militaryDiscount);
-
+            var license3 = new MovieLicense("Matrix", now, Discount.Senior, LicenseType.TwoDays);
+            var license4 = new MovieLicense("Secret Life of Pets", now, Discount.Military, LicenseType.LifeLong);
             PrintLicenseDetails(license3);
             PrintLicenseDetails(license4);
 
